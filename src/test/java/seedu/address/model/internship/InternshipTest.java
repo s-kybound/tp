@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICATIONSTATUS_OPTIVER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_OPTIVER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_OPTIVER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_OPTIVER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REQUIREMENT_OPTIVER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_OPTIVER;
@@ -36,6 +37,7 @@ class InternshipTest {
         // same companyName and same role, all other attributes different -> returns true
         Internship editedJaneStreet = new InternshipBuilder(JANESTREET)
                         .withApplicationStatus(VALID_APPLICATIONSTATUS_OPTIVER)
+                        .withDeadline(VALID_DEADLINE_OPTIVER, VALID_STARTDATE_OPTIVER)
                         .withStartDate(VALID_STARTDATE_OPTIVER)
                         .withDuration(VALID_DURATION_OPTIVER).withRequirements(VALID_REQUIREMENT_OPTIVER)
                         .build();
@@ -88,6 +90,11 @@ class InternshipTest {
                 .withApplicationStatus(VALID_APPLICATIONSTATUS_OPTIVER).build();
         assertFalse(JANESTREET.equals(editedJaneStreet));
 
+        // different deadline -> returns false
+        editedJaneStreet = new InternshipBuilder(JANESTREET)
+                .withDeadline(VALID_DEADLINE_OPTIVER, VALID_STARTDATE_OPTIVER).build();
+        assertFalse(JANESTREET.equals(editedJaneStreet));
+
         // different startDate -> returns false
         editedJaneStreet = new InternshipBuilder(JANESTREET).withStartDate(VALID_STARTDATE_OPTIVER).build();
         assertFalse(JANESTREET.equals(editedJaneStreet));
@@ -105,8 +112,17 @@ class InternshipTest {
     public void toStringMethod() {
         String expected = Internship.class.getCanonicalName() + "{Company Name=" + JANESTREET.getCompanyName()
                 + ", Role=" + JANESTREET.getRole() + ", Application Status=" + JANESTREET.getApplicationStatus()
-                + ", Start Date=" + JANESTREET.getStartDate() + ", Duration=" + JANESTREET.getDuration()
-                + ", Requirements=" + JANESTREET.getRequirements() + "}";
+                + ", Deadline=" + JANESTREET.getDeadline() + ", Start Date=" + JANESTREET.getStartDate()
+                + ", Duration=" + JANESTREET.getDuration() + ", Requirements=" + JANESTREET.getRequirements() + "}";
         assertEquals(expected, JANESTREET.toString());
+    }
+
+    @Test
+    public void hashCode_sameInternship_sameHashCode() {
+        Internship editedJaneStreet1 = new InternshipBuilder(JANESTREET).withCompanyName(VALID_COMPANY_NAME_OPTIVER)
+                .build();
+        Internship editedJaneStreet2 = new InternshipBuilder(JANESTREET).withCompanyName(VALID_COMPANY_NAME_OPTIVER)
+                .build();
+        assertEquals(editedJaneStreet1.hashCode(), editedJaneStreet2.hashCode());
     }
 }

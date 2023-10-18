@@ -15,24 +15,28 @@ public class TypicalInternships {
     public static final Internship JANESTREET = new InternshipBuilder().withCompanyName("Jane Street")
             .withRole("Software Engineer")
             .withDuration("3")
+            .withDeadline("05/05/2023", "07/05/2023")
             .withRequirements(new String[]{"2 years of experience"})
             .withStartDate("07/05/2023").build();
 
     public static final Internship OPTIVER = new InternshipBuilder().withCompanyName("Optiver")
             .withRole("Software Engineer")
             .withDuration("3")
+            .withDeadline("05/04/2022", "07/05/2023")
             .withRequirements(new String[]{"3 years of experience"})
             .withStartDate("07/05/2023").build();
 
     public static final Internship CITADEL = new InternshipBuilder().withCompanyName("Citadel")
             .withRole("Software Engineer")
             .withDuration("3")
+            .withDeadline("01/12/2021", "07/05/2023")
             .withRequirements(new String[]{"4 years of experience"})
             .withStartDate("07/05/2023").build();
 
     public static final Internship GOVTECH = new InternshipBuilder().withCompanyName("Govtech")
             .withRole("UI Designer")
             .withDuration("1")
+            .withDeadline("05/05/2020", "01/05/2021")
             .withRequirements(new String[]{"40 years of experience"})
             .withStartDate("01/05/2021").build();
 

@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REQUIREMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -55,6 +56,13 @@ public class ModifyCommandParser implements InternshipParser<ModifyCommand> {
         if (argMultimap.getValue(PREFIX_APPLICATION_STATUS).isPresent()) {
             editInternshipDescriptor.setApplicationStatus(ParserUtil
                     .parseApplicationStatus(argMultimap.getValue(PREFIX_APPLICATION_STATUS).get()));
+        }
+        if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
+            editInternshipDescriptor.setDeadline(ParserUtil
+                    .parseDeadline(
+                            argMultimap.getValue(PREFIX_DEADLINE).get(),
+                            argMultimap.getValue(PREFIX_START_DATE).get()
+                    ));
         }
         if (argMultimap.getValue(PREFIX_START_DATE).isPresent()) {
             editInternshipDescriptor.setStartDate(ParserUtil

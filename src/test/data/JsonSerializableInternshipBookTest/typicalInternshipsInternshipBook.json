@@ -4,6 +4,7 @@
     "companyName" : "Optiver",
     "role" : "Software Engineer",
     "applicationStatus" : "Yet to apply",
+    "deadline" : "05/04/2022",
     "startDate" : "07/05/2023",
     "duration" : "3",
     "requirements" : [ "3 years of experience" ]
@@ -11,6 +12,7 @@
     "companyName" : "Citadel",
     "role" : "Software Engineer",
     "applicationStatus" : "Yet to apply",
+    "deadline" : "01/12/2021",
     "startDate" : "07/05/2023",
     "duration" : "3",
     "requirements" : [ "4 years of experience" ]

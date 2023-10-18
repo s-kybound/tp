@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.CompanyName;
+import seedu.address.model.internship.Deadline;
 import seedu.address.model.internship.Duration;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Role;
@@ -28,6 +29,8 @@ class JsonAdaptedInternship {
     private final String companyName;
     private final String role;
     private final String applicationStatus;
+
+    private final String deadline;
     private final String startDate;
     private final String duration;
     private final List<JsonAdaptedRequirement> requirements = new ArrayList<>();
@@ -38,12 +41,14 @@ class JsonAdaptedInternship {
     @JsonCreator
     public JsonAdaptedInternship(@JsonProperty("companyName") String companyName, @JsonProperty("role") String role,
                                  @JsonProperty("applicationStatus") String applicationStatus,
+                                 @JsonProperty("deadline") String deadline,
                                  @JsonProperty("startDate") String startDate,
                                  @JsonProperty("duration") String duration,
                                  @JsonProperty("requirements") List<JsonAdaptedRequirement> requirements) {
         this.companyName = companyName;
         this.role = role;
         this.applicationStatus = applicationStatus;
+        this.deadline = deadline;
         this.startDate = startDate;
         this.duration = duration;
         if (requirements != null) {
@@ -52,12 +57,13 @@ class JsonAdaptedInternship {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Internship} into this class for Jackson use.
      */
     public JsonAdaptedInternship(Internship source) {
         companyName = source.getCompanyName().toString();
         role = source.getRole().toString();
         applicationStatus = source.getApplicationStatus().toString();
+        deadline = source.getDeadline().toString();
         startDate = source.getStartDate().toString();
         duration = source.getDuration().toString();
         requirements.addAll(source.getRequirements().stream()
@@ -66,9 +72,9 @@ class JsonAdaptedInternship {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted internship object into the model's {@code Internship} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted internship.
      */
     public Internship toModelType() throws IllegalValueException {
         final List<Requirement> internshipRequirements = new ArrayList<>();
@@ -113,6 +119,16 @@ class JsonAdaptedInternship {
         }
         final StartDate modelStartDate = new StartDate(startDate);
 
+        // This should appear below startDate so startDate is definitely not null by this point
+        if (deadline == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Deadline.class.getSimpleName()));
+        }
+        if (!Deadline.isValidDeadline(deadline, startDate)) {
+            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        final Deadline modelDeadline = new Deadline(deadline, startDate);
+
         if (duration == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Duration.class.getSimpleName()));
@@ -124,7 +140,7 @@ class JsonAdaptedInternship {
 
         final Set<Requirement> modelRequirements = new HashSet<>(internshipRequirements);
 
-        return new Internship(modelCompanyName, modelRole, modelApplicationStatus,
+        return new Internship(modelCompanyName, modelRole, modelApplicationStatus, modelDeadline,
                 modelStartDate, modelDuration, modelRequirements);
     }
 

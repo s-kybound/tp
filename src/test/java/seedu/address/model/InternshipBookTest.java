@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICATIONSTATUS_JANESTREET;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_JANESTREET;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REQUIREMENT_JANESTREET;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTDATE_JANESTREET;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.JANESTREET;
 import static seedu.address.testutil.TypicalInternships.getTypicalInternshipBook;
@@ -72,11 +74,12 @@ public class InternshipBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInInternshipBook_returnsTrue() {
         internshipBook.addInternship(JANESTREET);
-        Internship editedJane = new InternshipBuilder(JANESTREET)
+        Internship editedJaneStreet = new InternshipBuilder(JANESTREET)
                 .withApplicationStatus(VALID_APPLICATIONSTATUS_JANESTREET)
+                .withDeadline(VALID_DEADLINE_JANESTREET, VALID_STARTDATE_JANESTREET)
                 .withRequirements(VALID_REQUIREMENT_JANESTREET)
                 .build();
-        assertTrue(internshipBook.hasInternship(editedJane));
+        assertTrue(internshipBook.hasInternship(editedJaneStreet));
     }
 
     @Test

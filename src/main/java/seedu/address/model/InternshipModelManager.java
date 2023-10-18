@@ -118,7 +118,7 @@ public class InternshipModelManager implements InternshipModel {
 
     /**
      * Returns an unmodifiable view of the list of {@code Internship} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedInternshipBook}
      */
     @Override
     public ObservableList<Internship> getFilteredInternshipList() {

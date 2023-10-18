@@ -3,9 +3,16 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REQUIREMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -30,16 +37,18 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 public class CommandTestUtil {
     public static final String VALID_COMPANY_NAME_JANESTREET = "Jane Street";
     public static final String VALID_ROLE_JANESTREET = "SWE";
-    public static final String VALID_REQUIREMENT_JANESTREET = "C++";
     public static final String VALID_APPLICATIONSTATUS_JANESTREET = "Yet to apply";
+    public static final String VALID_DEADLINE_JANESTREET = "01/05/2025";
     public static final String VALID_DURATION_JANESTREET = "2";
     public static final String VALID_STARTDATE_JANESTREET = "05/05/2025";
     public static final String VALID_COMPANY_NAME_OPTIVER = "Optiver";
     public static final String VALID_ROLE_OPTIVER = "UI Designer";
-    public static final String VALID_REQUIREMENT_OPTIVER = "Figma";
     public static final String VALID_APPLICATIONSTATUS_OPTIVER = "In progress";
+    public static final String VALID_DEADLINE_OPTIVER = "03/01/2025";
     public static final String VALID_DURATION_OPTIVER = "5";
     public static final String VALID_STARTDATE_OPTIVER = "06/06/2026";
+    public static final String VALID_REQUIREMENT_OPTIVER = "Figma";
+    public static final String VALID_REQUIREMENT_JANESTREET = "C++";
 
 
     public static final String VALID_NAME_AMY = "Amy Bee";
@@ -64,11 +73,41 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+
+    public static final String COMPANY_NAME_DESC_JANESTREET = " " + PREFIX_COMPANY_NAME + VALID_COMPANY_NAME_JANESTREET;
+    public static final String COMPANY_NAME_DESC_OPTIVER = " " + PREFIX_COMPANY_NAME + VALID_COMPANY_NAME_OPTIVER;
+    public static final String ROLE_DESC_JANESTREET = " " + PREFIX_ROLE + VALID_ROLE_JANESTREET;
+    public static final String ROLE_DESC_OPTIVER = " " + PREFIX_ROLE + VALID_ROLE_OPTIVER;
+    //    public static final String APPLICATION_STATUS_DESC_JANESTREET =
+    //            " " + PREFIX_APPLICATION_STATUS + VALID_APPLICATIONSTATUS_JANESTREET;
+    //    public static final String APPLICATION_STATUS_DESC_OPTIVER =
+    //            " " + PREFIX_APPLICATION_STATUS + VALID_APPLICATIONSTATUS_OPTIVER;
+    public static final String DEADLINE_DESC_JANESTREET = " " + PREFIX_DEADLINE + VALID_DEADLINE_JANESTREET;
+    public static final String DEADLINE_DESC_OPTIVER = " " + PREFIX_DEADLINE + VALID_DEADLINE_OPTIVER;
+    public static final String START_DATE_DESC_JANESTREET = " " + PREFIX_START_DATE + VALID_STARTDATE_JANESTREET;
+    public static final String START_DATE_DESC_OPTIVER = " " + PREFIX_START_DATE + VALID_STARTDATE_OPTIVER;
+    public static final String DURATION_DESC_JANESTREET = " " + PREFIX_DURATION + VALID_DURATION_JANESTREET;
+    public static final String DURATION_DESC_OPTIVER = " " + PREFIX_DURATION + VALID_DURATION_OPTIVER;
+    public static final String REQUIREMENT_DESC_JANESTREET = " " + PREFIX_REQUIREMENT + VALID_REQUIREMENT_JANESTREET;
+    public static final String REQUIREMENT_DESC_OPTIVER = " " + PREFIX_REQUIREMENT + VALID_REQUIREMENT_OPTIVER;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String INVALID_COMPANY_NAME_DESC =
+            " " + PREFIX_NAME + "Jane&"; // '&' not allowed in company names
+    public static final String INVALID_ROLE_DESC = " " + PREFIX_PHONE; // empty string not allowed for roles
+    public static final String INVALID_APPLICATION_STATUS_DESC =
+            " " + PREFIX_APPLICATION_STATUS + "y@ETO"; // wrong format
+    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE; // empty string not allowed for deadlines
+    public static final String INVALID_START_DATE_DESC =
+            " " + PREFIX_START_DATE; // empty string not allowed for start dates
+    public static final String INVALID_DURATION_DESC = " " + PREFIX_DURATION; // empty string not allowed for durations
+    public static final String INVALID_REQUIREMENT_DESC =
+            " " + PREFIX_REQUIREMENT; // empty string not allowed for requirements
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

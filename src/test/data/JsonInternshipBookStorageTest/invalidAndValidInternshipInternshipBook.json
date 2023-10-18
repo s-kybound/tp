@@ -3,6 +3,7 @@
     "companyName": "Valid Company",
     "role": "SWE",
     "applicationStatus": "Yet to apply",
+    "deadline" : "01/01/1996",
     "startDate": "20/02/2001",
     "duration": "3",
     "requirements": [ "Coffee lover" ]
@@ -10,6 +11,7 @@
     "companyName": "Company with invalid date",
     "role": "SWE",
     "applicationStatus": "Yet to apply",
+    "deadline" : "01/01/2023",
     "startDate": "20/50/2001",
     "duration": "3",
     "requirements": [ "Coffee lover" ]

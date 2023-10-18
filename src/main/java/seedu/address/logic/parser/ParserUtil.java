@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.CompanyName;
+import seedu.address.model.internship.Deadline;
 import seedu.address.model.internship.Duration;
 import seedu.address.model.internship.Role;
 import seedu.address.model.internship.StartDate;
@@ -132,6 +133,27 @@ public class ParserUtil {
             throw new ParseException(ApplicationStatus.MESSAGE_CONSTRAINTS);
         }
         return new ApplicationStatus(trimmedApplicationStatus);
+    }
+
+    /**
+     * Parses a {@code String deadline} and {@code String startDate} into an {@code Deadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code deadline} is invalid.
+     */
+    public static Deadline parseDeadline(String deadline, String startDate) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        String trimmedStartDate = startDate.trim();
+
+        if (!StartDate.isValidStartDate(trimmedStartDate)) {
+            throw new ParseException(StartDate.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!Deadline.isValidDeadline(trimmedDeadline, trimmedStartDate)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        return new Deadline(trimmedDeadline, trimmedStartDate);
     }
 
     // DELETE AFTER FULL TRANSITION

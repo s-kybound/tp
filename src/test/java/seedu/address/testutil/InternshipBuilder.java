@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.CompanyName;
+import seedu.address.model.internship.Deadline;
 import seedu.address.model.internship.Duration;
 import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Role;
@@ -18,6 +19,7 @@ import seedu.address.model.util.InternshipSampleDataUtil;
 public class InternshipBuilder {
     public static final String DEFAULT_COMPANY_NAME = "Jane Street";
     public static final String DEFAULT_ROLE = "Software Engineer";
+    public static final String DEFAULT_DEADLINE = "06/06/2022";
     public static final String DEFAULT_APPLICATION_STATUS = "Yet to apply";
     public static final String DEFAULT_START_DATE = "20/01/2023";
     public static final String DEFAULT_DURATION = "3";
@@ -25,6 +27,7 @@ public class InternshipBuilder {
     private CompanyName companyName;
     private Role role;
     private ApplicationStatus applicationStatus;
+    private Deadline deadline;
     private StartDate startDate;
     private Duration duration;
     private Set<Requirement> requirements;
@@ -36,18 +39,20 @@ public class InternshipBuilder {
         this.companyName = new CompanyName(DEFAULT_COMPANY_NAME);
         this.role = new Role(DEFAULT_ROLE);
         this.applicationStatus = new ApplicationStatus(DEFAULT_APPLICATION_STATUS);
+        this.deadline = new Deadline(DEFAULT_DEADLINE, DEFAULT_START_DATE);
         this.startDate = new StartDate(DEFAULT_START_DATE);
         this.duration = new Duration(DEFAULT_DURATION);
         this.requirements = new HashSet<>();
     }
 
     /**
-     * Initializes the InternshipBuilder with the data of {@code personToCopy}.
+     * Initializes the InternshipBuilder with the data of {@code internshipToCopy}.
      */
     public InternshipBuilder(Internship internshipToCopy) {
         this.companyName = internshipToCopy.getCompanyName();
         this.role = internshipToCopy.getRole();
         this.applicationStatus = internshipToCopy.getApplicationStatus();
+        this.deadline = internshipToCopy.getDeadline();
         this.startDate = internshipToCopy.getStartDate();
         this.duration = internshipToCopy.getDuration();
         this.requirements = new HashSet<>(internshipToCopy.getRequirements());
@@ -79,7 +84,7 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code ApplicationStatus} of the {@code Person} that we are building.
+     * Sets the {@code ApplicationStatus} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withApplicationStatus(String applicationStatus) {
         this.applicationStatus = new ApplicationStatus(applicationStatus);
@@ -87,7 +92,15 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code Duration} of the {@code Person} that we are building.
+     * Sets the {@code Deadline} of the {@code Internship} that we are building.
+     */
+    public InternshipBuilder withDeadline(String deadline, String startDate) {
+        this.deadline = new Deadline(deadline, startDate);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Duration} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withDuration(String duration) {
         this.duration = new Duration(duration);
@@ -106,7 +119,7 @@ public class InternshipBuilder {
      * Builds an internship for testing.
      */
     public Internship build() {
-        return new Internship(this.companyName, this.role, this.applicationStatus,
+        return new Internship(this.companyName, this.role, this.applicationStatus, this.deadline,
                 this.startDate, this.duration, this.requirements);
     }
 
